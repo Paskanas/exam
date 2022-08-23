@@ -1,0 +1,20 @@
+// Fonts
+@import url("https://fonts.googleapis.com/css?family=Nunito");
+
+// Variables
+@import "variables";
+
+// Bootstrap
+@import "bootstrap/scss/bootstrap";
+
+.wrap {
+    white-space: pre-wrap !important;
+    resize: none;
+    min-height: 50px;
+    max-height: 300px;
+    font-size: 1rem;
+    font-weight: 500;
+    background-color: white;
+    border: none;
+    color: black;
+}
