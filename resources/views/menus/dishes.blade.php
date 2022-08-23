@@ -9,8 +9,6 @@
           <h1>{{$menu->title}}</h1>
         </div>
         <div class="card-body">
-
-
           <ul class="list-group">
             @forelse($dishes as $dish)
             <li class="list-group-item">
@@ -20,8 +18,6 @@
                   <h5 name='title'>{{$dish->title}}</h5>
                   <label for="about">About</label>
                   <h5 name='about'>{{$dish->about}}</h5>
-                  {{-- <label for="rating">Rating</label>
-                  <h5 name='rating'>{{$dish->rating}}</h5> --}}
                 </div>
                 <div class="col-4 d-flex align-items-center justify-content-center">
                   @if($dish->photo)
@@ -46,9 +42,6 @@
             <li class="list-group-item">No dishes yet</li>
             @endforelse
           </ul>
-
-
-
         </div>
       </div>
     </div>

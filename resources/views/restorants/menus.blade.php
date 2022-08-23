@@ -16,8 +16,6 @@
                 <div class="col-8">
                   <label for="title">Title</label>
                   <h5 name='title'>{{$menu->title}}</h5>
-                  {{-- <label for="restorant">Restorant</label>
-                  <h5 name='restorant'>{{$menu->getMenuRestorants->title}}</h5> --}}
                 </div>
 
                 <div class="col-4 d-flex align-items-center justify-content-center">

@@ -30,30 +30,12 @@ class HomeController extends Controller
         } else {
             $restorants = Restorant::all();
         }
-        // } else {
-
-        //     if ($request->country_id == 0) {
-        //         $hotels = match ($request->sort) {
-        //             'price-asc' => Hotel::orderBy('price', 'asc')->get(),
-        //             'price-desc' => Hotel::orderBy('price', 'desc')->get(),
-        //             default => Hotel::all()
-        //         };
-        //     } else {
-        //         $hotels = match ($request->sort) {
-        //             'price-asc' => Hotel::where('country_id', $request->country_id)->orderBy('price', 'asc')->get(),
-        //             'price-desc' => Hotel::where('country_id', $request->country_id)->orderBy('price', 'desc')->get(),
-        //             default => Hotel::where('country_id', $request->country_id)->get()
-        //         };
-        //     }
-        // }
         return view(
             'home',
             [
                 'restorants' => $restorants,
                 'title' => 'Restorants',
                 'menus' => Menu::all(),
-                // 'sort' => $request->sort ? $request->sort : 'default',
-                // 'filter' => $request->country_id ? $request->country_id : 0,
                 'find' => $request->find ? $request->find : ''
             ]
         );

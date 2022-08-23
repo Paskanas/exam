@@ -34,7 +34,6 @@ Route::prefix('restorants')->name('restorants-')->group(function () {
     Route::delete('{restorant}', [RestorantController::class, 'destroy'])->name('delete')->middleware('rp:admin');
     Route::get('show/{id}', [RestorantController::class, 'show'])->name('show')->middleware('rp:user');
     Route::get('menus/{id}', [RestorantController::class, 'menus'])->name('menus')->middleware('rp:user');
-    // Route::get('show', [RestorantController::class, 'link'])->name('show-route');
 });
 
 // Menus
@@ -47,8 +46,6 @@ Route::prefix('menus')->name('menus-')->group(function () {
     Route::delete('{menu}', [MenuController::class, 'destroy'])->name('delete')->middleware('rp:admin');
     Route::get('show/{id}', [MenuController::class, 'show'])->name('show')->middleware('rp:user');
     Route::get('dishes/{id}', [MenuController::class, 'dishes'])->name('dishes')->middleware('rp:user');
-    // Route::delete('delete-picture/{dish}', [MenuController::class, 'deletePicture'])->name('delete-picture');
-    // Route::put('save-rating/{dish}', [MenuController::class, 'saveRating'])->name('save-rating');
 });
 
 // Dishes
@@ -61,7 +58,6 @@ Route::prefix('dishes')->name('dishes-')->group(function () {
     Route::delete('{dish}', [DishController::class, 'destroy'])->name('delete')->middleware('rp:admin');
     Route::get('show/{id}', [DishController::class, 'show'])->name('show')->middleware('rp:user');
     Route::delete('delete-picture/{dish}', [DishController::class, 'deletePicture'])->name('delete-picture');
-    // Route::put('save-rating/{dish}', [DishController::class, 'saveRating'])->name('save-rating');
 });
 
 //Orders
