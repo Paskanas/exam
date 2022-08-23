@@ -13,11 +13,11 @@
             <form action="{{route('restorants-update', $restorant)}}" method="post">
               <div class="form-group">
                 <label for="restorant_title">Title</label>
-                <input class="form-control" type="text" required name="restorant_title" value="{{$restorant->title}}">
+                <input class="form-control" type="text" required name="restorant_title" value="{{old('restorant_title',$restorant->title)}}">
                 <label for="restorant_code">Code</label>
-                <input class="form-control" type="number" required name="restorant_code" value={{$restorant->code}}>
+                <input class="form-control" type="number" required name="restorant_code" value={{old('restorant_code',$restorant->code)}}>
                 <label for="restorant_address">Address</label>
-                <input class="form-control" type="text" required name="restorant_address" value="{{$restorant->address}}">
+                <input class="form-control" type="text" required name="restorant_address" value="{{old('restorant_address',$restorant->address)}}">
               </div>
               @csrf
               @method('put')

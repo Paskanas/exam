@@ -14,7 +14,7 @@
               <div class="col-6">
                 <form action="{{route('menus-update', $menu)}}" method="post" enctype="multipart/form-data">
                   <label for="title">Title</label>
-                  <input class="form-control" type="text" name="title" value="{{$menu->title}}">
+                  <input class="form-control" type="text" name="title" value="{{old('title',$menu->title)}}">
                   <label for="restorant_id">Restorant</label>
                   <select class="form-select" name="restorant_id">
                     @foreach($restorants as $restorant)

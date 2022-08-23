@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('restorant_id');
             $table->foreign('restorant_id')->references('id')->on('restorants');
-
             $table->string('title', 50);
             $table->timestamps();
         });

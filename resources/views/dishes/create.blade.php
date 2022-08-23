@@ -15,11 +15,11 @@
                 <label for="menu_id">Menu</label>
                 <select class="form-select" name="menu_id">
                   @foreach($menus as $menu)
-                  <option value="{{$menu->id}}">{{$menu->title}}</option>
+                  <option value="{{$menu->id}}" @if(old('menu_id')==$menu->id) selected @endif>{{$menu->title}}-{{$menu->getMenuRestorants->title}}</option>
                   @endforeach
                 </select>
                 <label for="title">Title</label>
-                <input class="form-control" type="text" name="title">
+                <input class="form-control" type="text" name="title" value="{{old('title')}}">
                 <div class="d-flex flex-column">
                   <label for="price">About</label>
                   <textarea style='resize: vertical; min-height:50px; max-height: 300px' name="about" cols="20" rows="4"></textarea>

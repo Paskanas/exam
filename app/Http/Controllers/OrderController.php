@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Mail\OrderShipped;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -51,7 +53,8 @@ class OrderController extends Controller
         $order->status = 1;
         $order->save();
 
+        // Mail::to($request->user())->send(new OrderShipped($order));
+
         return redirect()->back();
-        // return redirect()->route('my-orders');
     }
 }

@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Restorant extends Model
 {
     use HasFactory;
+
+    public function menus()
+    {
+        return $this->hasMany(Menu::class, 'restorant_id', 'id');
+    }
 }

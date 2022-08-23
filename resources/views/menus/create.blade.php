@@ -13,11 +13,11 @@
             <form action="{{route('menus-store')}}" method="post" enctype="multipart/form-data">
               <div class="form-group">
                 <label for="title">Title</label>
-                <input class="form-control" type="text" name="title" value="{{old('color_title')}}">
+                <input class="form-control" type="text" name="title" value="{{old('title')}}">
                 <label for="restorant_id">Restorant</label>
                 <select class="form-select" name="restorant_id">
                   @foreach($restorants as $restorant)
-                  <option value="{{$restorant->id}}">{{$restorant->title}}</option>
+                  <option value="{{$restorant->id}}" @if(old('restorant_id')==$restorant->id) selected @endif>{{$restorant->title}}</option>
                   @endforeach
                 </select>
               </div>

@@ -12,11 +12,11 @@
           <ul>
             <form action="{{route('restorants-store')}}" method="post">
               <label for="restorant_title">Title</label>
-              <input class="form-control" type="text" required name="restorant_title">
+              <input class="form-control" type="text" required name="restorant_title" value="{{old('restorant_title')}}">
               <label for="restorant_code">Code</label>
-              <input class="form-control" type="text" required name="restorant_code">
+              <input class="form-control" type="number" required name="restorant_code" value="{{old('restorant_code')}}">
               <label for="restorant_address">Address</label>
-              <input class="form-control" type="text" required name="restorant_address">
+              <input class="form-control" type="text" required name="restorant_address" value="{{old('restorant_address')}}">
               @csrf
               <button class="btn btn-outline-primary mt-4" type="submit">New restorant</button>
             </form>

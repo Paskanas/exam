@@ -13,4 +13,8 @@ class Menu extends Model
     {
         return $this->belongsTo(Restorant::class, 'restorant_id', 'id');
     }
+    public function dishes()
+    {
+        return $this->hasMany(Dish::class, 'menu_id', 'id');
+    }
 }

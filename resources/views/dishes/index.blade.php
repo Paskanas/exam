@@ -14,23 +14,21 @@
             <li class="list-group-item">
               <div class="row">
                 <div class="col-6">
+                  <label for="restorant_title">Menu</label>
+                  <h5 name='restorant_title'>{{$dish->getDishMenus->getMenuRestorants->title}}</h5>
                   <label for="menu_id">Menu</label>
                   <h5 name='menu_id'>{{$dish->getDishMenus->title}}</h5>
                   <label for="title">Title</label>
                   <h5 name='title'>{{$dish->title}}</h5>
-                  {{-- <label for="about">About</label>
-                  <textarea disabled class="wrap" name='about'>{{$dish->about}}</textarea> --}}
                   <div class="d-flex flex-column">
                     <label for="price">About</label>
-                    <textarea disabled class="wrap" name="about" cols="20">{{$dish->about}}</textarea>
+                    <textarea disabled class="wrap" name="about" cols="20" rows='4'>{{$dish->about}}</textarea>
                   </div>
-                  {{-- <label for="rating">Rating</label>
-                  <h5 name='rating'>{{$dish->rating}}</h5> --}}
                 </div>
                 <div class="col-4 d-flex align-items-center justify-content-center">
                   @if($dish->photo)
-                  <div class="w-75 h-75 d-flex justify-content-end">
-                    <img class="rounded" src="{{$dish->photo}}" alt="Dish photo">
+                  <div class="d-flex justify-content-end">
+                    <img class="rounded w-100 h-100" src="{{$dish->photo}}" alt="Dish photo">
                   </div>
                   @endif
                 </div>

@@ -3,11 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Menu;
-use App\Http\Requests\StoreMenuRequest;
-use App\Http\Requests\UpdateMenuRequest;
 use App\Models\Dish;
 use App\Models\Restorant;
 use Illuminate\Http\Request;
+use Validator;
 
 class MenuController extends Controller
 {
@@ -42,6 +41,20 @@ class MenuController extends Controller
     public function store(Request $request)
     {
         $menu = new Menu;
+
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'restorant_id' => ['required', 'min:1'],
+                'title' => ['required', 'min:3', 'max:64'],
+            ],
+
+        );
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
+
 
         $menu->restorant_id = $request->restorant_id;
         $menu->title = $request->title;
@@ -82,6 +95,19 @@ class MenuController extends Controller
      */
     public function update(Request $request, Menu $menu)
     {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'restorant_id' => ['required', 'min:1'],
+                'title' => ['required', 'min:3', 'max:64'],
+            ],
+
+        );
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
+
         $menu->restorant_id = $request->restorant_id;
         $menu->title = $request->title;
         $menu->save();
@@ -96,8 +122,11 @@ class MenuController extends Controller
      */
     public function destroy(Menu $menu)
     {
-        $menu->delete();
-        return redirect()->route('menus-index');
+        if (!$menu->dishes->count()) {
+            $menu->delete();
+            return redirect()->route('menus-index');
+        }
+        return redirect()->back()->with('deleted', 'No no, it is imposible!');
     }
 
     public function dishes(int $menuId)

@@ -20,10 +20,10 @@
                     @endforeach
                   </select>
                   <label for="title">Title</label>
-                  <input class="form-control" type="text" name="title" value="{{$dish->title}}">
+                  <input class="form-control" type="text" name="title" value="{{old('title',$dish->title)}}">
                   <div class="d-flex flex-column">
                     <label for="price">About</label>
-                    <textarea style='resize: vertical; min-height:50px; max-height: 300px' name="about" cols="20" rows="4">{{$dish->about}}</textarea>
+                    <textarea style='resize: vertical; min-height:50px; max-height: 300px' name="about" cols="20" rows="4">{{old('about',$dish->about)}}</textarea>
                   </div>
                   <label for="dish_photo">Photo</label>
                   <input class="form-control" type="file" name="dish_photo">

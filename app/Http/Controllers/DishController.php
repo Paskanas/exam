@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Dish;
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use Validator;
 
 class DishController extends Controller
 {
@@ -39,6 +40,20 @@ class DishController extends Controller
     public function store(Request $request)
     {
         $dish = new Dish;
+
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'menu_id' => ['required', 'min:1'],
+                'title' => ['required', 'min:3', 'max:64'],
+                'about' => ['required', 'min:3', 'max:64'],
+            ],
+
+        );
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
 
         if ($request->file('dish_photo')) {
             $photo = $request->file('dish_photo');
@@ -89,6 +104,22 @@ class DishController extends Controller
      */
     public function update(Request $request, Dish $dish)
     {
+
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'menu_id' => ['required', 'min:1', 'max:64'],
+                'title' => ['required', 'min:3', 'max:64'],
+                'about' => ['required', 'min:3', 'max:64'],
+            ],
+
+        );
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
+
+
         $name = pathinfo($dish->photo, PATHINFO_FILENAME);
         $ext = pathinfo($dish->photo, PATHINFO_EXTENSION);
 

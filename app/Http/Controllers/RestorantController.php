@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Menu;
 use App\Models\Restorant;
 use Illuminate\Http\Request;
+use Validator;
 
 class RestorantController extends Controller
 {
@@ -38,6 +39,21 @@ class RestorantController extends Controller
     public function store(Request $request)
     {
         $restorant = new Restorant;
+
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'restorant_title' => ['required', 'min:3', 'max:64'],
+                'restorant_code' => ['required', 'min:3', 'max:10'],
+                'restorant_address' => ['required', 'min:5', 'max:64'],
+            ],
+
+        );
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
+
         $restorant->title = $request->restorant_title;
         $restorant->code = $request->restorant_code;
         $restorant->address = $request->restorant_address;
@@ -77,6 +93,21 @@ class RestorantController extends Controller
      */
     public function update(Request $request, Restorant $restorant)
     {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'restorant_title' => ['required', 'min:3', 'max:64'],
+                'restorant_code' => ['required', 'min:3', 'max:10'],
+                'restorant_address' => ['required', 'min:5', 'max:64'],
+            ],
+
+        );
+        if ($validator->fails()) {
+            $request->flash();
+            return redirect()->back()->withErrors($validator);
+        }
+
+
         $restorant->title = $request->restorant_title;
         $restorant->code = $request->restorant_code;
         $restorant->address = $request->restorant_address;
@@ -92,13 +123,16 @@ class RestorantController extends Controller
      */
     public function destroy(Restorant $restorant)
     {
-        $restorant->delete();
-        return redirect()->route('restorants-index');
+
+        if (!$restorant->menus->count()) {
+            $restorant->delete();
+            return redirect()->route('restorants-index');
+        }
+        return redirect()->back()->with('deleted', 'No no, it is imposible!');
     }
 
     public function menus(int $restorantId)
     {
-        dump($restorantId);
         $restorant = Restorant::where('id', $restorantId)->first();
         $menus = Menu::where('restorant_id', $restorantId)->get();
         return view('restorants.menus', ['restorant' => $restorant, 'menus' => $menus]);
